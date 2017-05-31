@@ -19,3 +19,4 @@
 //= require_tree .
 //= require moment
 //= require bootstrap-datetimepicker
+//= require jquery.slick
