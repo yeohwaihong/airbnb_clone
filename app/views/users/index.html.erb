@@ -11,6 +11,12 @@
     <%= f.file_field :avatar %>
 
   <p><%= f.submit %></p>
+  
+  <label>
+   <%= f.check_box :remove_avatar %>
+   Remove avatar
+ </label>
+</p>
 <% end %>
 
 <% case current_user.role %>

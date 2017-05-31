@@ -38,6 +38,17 @@
         <td><%= listing.address %></td>
         <td><%= listing.price_per_night %></td>
         <td><%= listing.description %></td>
+            <% case current_user.role %>
+            <% when 'user' %>
+              <td><%= link_to 'Show', listing %></td>
+            <% when 'vip' %>
+              <td><%= link_to 'Show', listing %></td>
+              <td><%= link_to 'Edit', edit_listing_path(listing) %></td>
+            <% when 'admin' %>
+              <td><%= link_to 'Show', listing %></td>
+              <td><%= link_to 'Edit', edit_listing_path(listing) %></td>
+              <td><%= link_to 'Destroy', listing, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <% end %>
         <% if listing.user == current_user %>
         <td><%= link_to 'Show', listing %></td>
         <td><%= link_to 'Edit', edit_listing_path(listing) %></td>
