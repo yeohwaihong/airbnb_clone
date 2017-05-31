@@ -1,0 +1,25 @@
+  <% case current_user.role %>
+  <% when 'user' %>
+    <h3>Welcome</h3>
+  <% when 'vip' %>
+    <h3>Welcome, VIP</h3>
+  <% when 'admin' %>
+    <h3>Welcome, Administrator</h3>
+<% else %>
+  <h3>Welcome</h3>
+<% end %>
+
+<p><%= @user.count %> registered.</p>
+
+<tbody>
+  <% @user.all.each do |user| %>
+    <tr>
+      <td><%= user.first_name %></td>
+      <td><%= link_to 'Show', user %></td>
+      <td><%= link_to 'Edit', edit_user_path(user) %></td>
+      <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <br />
+    </tr>
+  <% end %>
+</tbody>
+</table>

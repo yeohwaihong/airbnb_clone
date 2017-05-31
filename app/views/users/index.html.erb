@@ -1,0 +1,48 @@
+
+
+
+
+<% case current_user.role %>
+<% when 'user' %>
+  <h3>Welcome, <%= current_user.first_name%></h3>
+<% when 'vip' %>
+  <h3>Welcome, <%= current_user.first_name%></h3>
+<% when 'admin' %>
+  <h3>Welcome, <%= current_user.first_name%></h3>
+<% else %>
+<h3>Welcome</h3>
+<% end %>
+
+
+<p><%= @users.count %> users registered.</p>
+
+<tbody>
+
+
+
+  <% @users.each do |user| %>
+    <tr>
+      <td><%= user.first_name %></td>
+      <br />
+      <% case current_user.role %>
+      <% when 'user' %>
+        <td><%= link_to 'Show', user %></td>
+        <br />
+      <% when 'vip' %>
+        <td><%= link_to 'Show', user %></td>
+        <td><%= link_to 'Edit', edit_user_path(user) %></td>
+        <br />
+      <% when 'admin' %>
+        <td><%= link_to 'Show', user %></td>
+        <td><%= link_to 'Edit', edit_user_path(user) %></td>
+        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <br />
+      <% end %>
+      <br />
+    </tr>
+  <% end %>
+
+
+    <br />
+</tbody>
+</table>

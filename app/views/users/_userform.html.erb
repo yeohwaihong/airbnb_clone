@@ -1,0 +1,16 @@
+<%= simple_form_for(@user) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :email, placeholder: 'Email address' %>
+    <%= f.input :first_name, placeholder: 'First name' %>
+    <%= f.input :last_name, placeholder: 'Last name' %>
+    <%= f.input :password, hint: 'No special characters.' %>
+    <%= f.input :birthday, as: :date, start_year: Date.today.year - 90,
+                        end_year: Date.today.year - 12, discard_day: false,
+                        order: [:day, :month, :year] %>
+    <%= f.input :role, collection: User.roles.keys %>
+    <%= f.button :submit %>
+  </div>
+
+<% end %>
