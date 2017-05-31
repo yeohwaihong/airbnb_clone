@@ -28,7 +28,9 @@ gem 'momentjs-rails'
 gem 'bootstrap3-datetimepicker-rails'
 gem 'country_select'
 gem 'gmaps-autocomplete-rails'
-gem 'carrierwave'
+
+gem 'carrierwave', '~> 1.0'
+gem 'mini_magick'
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
