@@ -1,0 +1,22 @@
+<%= simple_form_for(@listing) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :place_type, collection: ["Shared Room", "Private Room", "Entire Home/Apartment"]%>
+    <%= f.input :property_type, collection: ["House", "Entire Floor", "Condominium", "Villa", "Townhouse", "Castle", "Treehouse", "Igloo", "Yurt", "Cave", "Chalet", "Hut", "Tent", "Other"]%>
+    <%= f.input :room_number, collection: 0..5%>
+    <%= f.input :bed_number, collection: 1..6%>
+    <%= f.input :guest_number, collection: 1..10%>
+    <%= f.input :country %>
+    <%= f.input :state %>
+    <%= f.input :city %>
+    <%= f.input :zipcode %>
+    <%= f.input :address %>
+    <%= f.input :price_per_night %>
+    <%= f.input :description %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

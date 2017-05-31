@@ -1,0 +1,53 @@
+<div class="jumbotron">
+  <h1>Haus Your Day</h1>
+  <p>Home sweet home.</p>
+  <br />
+  <br />
+  <div class="container">
+    <input id="autocomplete" type="text" size="50" style="width: 326px; height: 34px;">
+  </div>
+
+  <br/>
+
+  <div class="container" style="width: 365px; height: 28px;">
+
+    <div class='input-group date' id='datetimepicker6'>
+      <input type='text' class="form-control" placeholder="Check In"/>
+      <span class="input-group-addon">
+        <span class="glyphicon glyphicon-calendar"></span>
+      </span>
+    </div>
+    <br/>
+
+    <div class='input-group date' id='datetimepicker7'>
+      <input type='text' class="form-control" placeholder="Check Out"/>
+      <span class="input-group-addon">
+        <span class="glyphicon glyphicon-calendar"></span>
+      </span>
+    </div>
+  </div>
+</div>
+
+
+
+<br/>
+<br/>
+<%= link_to "Sign in with Facebook", "/auth/facebook" %>
+<script>
+  function initialize() {
+    var input = document.getElementById('autocomplete');
+    var autocomplete = new google.maps.places.Autocomplete(input);
+  }
+
+  google.maps.event.addDomListener(window, 'load', initialize);
+  $(function () {
+    $('#datetimepicker6').datetimepicker({format: 'MMM DD'});
+    $('#datetimepicker7').datetimepicker({useCurrent: false, format: 'MMM DD'});
+    $("#datetimepicker6").on("dp.change", function (e) {
+      $('#datetimepicker7').data("DateTimePicker").minDate(e.date);
+    });
+    $("#datetimepicker7").on("dp.change", function (e) {
+      $('#datetimepicker6').data("DateTimePicker").maxDate(e.date);
+    });
+  });
+</script>
