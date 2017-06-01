@@ -9,6 +9,7 @@ class ListingsController < ApplicationController
   # GET /listings/1.json
   def show
     @listing = Listing.find(params[:id])
+    @booking = @listing.bookings.new
   end
 
   # GET /listings/1/edit

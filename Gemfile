@@ -31,6 +31,7 @@ gem 'gmaps-autocomplete-rails'
 
 gem 'carrierwave', '~> 1.0'
 gem 'mini_magick'
+gem 'fog'
 
 gem "jquery-slick-rails"
 

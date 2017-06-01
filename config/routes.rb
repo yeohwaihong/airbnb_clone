@@ -1,5 +1,16 @@
 Rails.application.routes.draw do
+  get 'bookings/index'
+
+  get 'bookings/show'
+
+  get 'bookings/form'
+
+  get 'bookings/edit'
+
+  get 'bookings/destroy'
+
   resources :listings
+  resources :bookings, only: [:create, :destroy]
   resources :passwords, controller: "clearance/passwords", only: [:create, :new]
   resource :session, controller: "clearance/sessions", only: [:create]
   resources :users, only: [:index, :edit, :show, :destroy, :update]
