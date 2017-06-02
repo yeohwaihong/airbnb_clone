@@ -3,6 +3,7 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 body {
   text-align: center;
+  font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif !important;
 }
 
 nav.navbar-findcond {
@@ -207,14 +208,14 @@ abbr {
   visibility: hidden;
 }
 
-.jumbotron {
+#jumbo {
   background-image: url("https://images.unsplash.com/photo-1486509556775-a2404e7d7d7d?dpr=0.5&auto=format&fit=crop&w=1500&h=1000&q=80&cs=tinysrgb&crop=&bg=");
   font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif !important;
-  // text-shadow: #444 0 2px 2px;
+  text-shadow: #444 0 1px 1px;
   color: white;
   padding-left: 20px;
   padding-right: 20px;
-  padding-bottom: 165px;
+  padding-bottom: 126px;
   margin-bottom: 0px;
 }
 
@@ -237,4 +238,50 @@ abbr {
 #myCarousel {
   display: inline-block;
   max-width: 50%;
+}
+
+
+#jumbo2 {
+  background-image:url("https://images.pexels.com/photos/297755/pexels-photo-297755.jpeg?w=940&h=650&auto=compress&cs=tinysrgb");
+  font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif !important;
+  text-shadow: #444 0 1px 1px;
+  color: white;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-bottom: 0px;
+  padding-bottom: 165px;
+}
+
+#jumbo3 {
+  background-image:url("https://images.pexels.com/photos/121537/pexels-photo-121537.jpeg?w=940&h=650&auto=compress&cs=tinysrgb");
+  font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif !important;
+  text-shadow: #444 0 1px 1px;
+  color: white;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-bottom: 0px;
+  padding-bottom: 165px;
+}
+
+#jumbo4 {
+  background-image:url("https://images.pexels.com/photos/90807/pexels-photo-90807.jpeg?w=940&h=650&auto=compress&cs=tinysrgb");
+  font-family: Circular,-apple-system,BlinkMacSystemFont,Roboto,Helvetica Neue,sans-serif !important;
+  text-shadow: #444 0 1px 1px;
+  color: white;
+  padding-left: 20px;
+  padding-right: 20px;
+  margin-bottom: 0px;
+}
+
+table {
+  display: inline-block;
+  text-align: center;
+}
+
+.table {
+  display: inline;
+}
+
+.img-circle {
+    border-radius: 50%;
 }

@@ -1,7 +1,27 @@
+<div class="jumbotron" id="jumbo4">
+  <br/>
+  <br />
+  <% case current_user.role %>
+  <% when 'user' %>
+    <h1>Welcome, <%= current_user.first_name%></h1>
+  <% when 'vip' %>
+    <h1>Welcome, <%= current_user.first_name%></h1>
+  <% when 'admin' %>
+    <h1>Welcome, <%= current_user.first_name%></h1>
+  <% else %>
+  <h1>Welcome</h1>
+  <% end %>
+  <br/>
+  <br/>
+</div>
+<br />
+<br />
+
 
 <% if current_user.avatar.square.url != nil -%>
-<%= image_tag (current_user.avatar.square.url) %>
+<%= image_tag (current_user.avatar.square.url), class: "img-circle"%>
 <% end %>
+
 
 <br />
 <br />
@@ -11,7 +31,7 @@
     <%= f.file_field :avatar %>
 
   <p><%= f.submit %></p>
-  
+
   <label>
    <%= f.check_box :remove_avatar %>
    Remove avatar

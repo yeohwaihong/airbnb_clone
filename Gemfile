@@ -24,6 +24,7 @@ gem 'uglifier', '>= 1.3.0'
 # gem 'therubyracer', platforms: :ruby
 gem 'clearance'
 gem 'simple_form'
+gem 'kaminari'
 gem 'momentjs-rails'
 gem 'bootstrap3-datetimepicker-rails'
 gem 'country_select'
