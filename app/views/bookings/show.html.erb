@@ -1,3 +1,46 @@
+<h1>Bookings Made</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Place</th>
+      <th>Start Date</th>
+      <th>End Date</th>
+      <th>Guest number</th>
+      <th>Reservation made by</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @listing.bookings.each do |booking| %>
+      <tr>
+        <td><%= booking.listing.place_type %></td>
+        <td><%= booking.start_date %></td>
+        <td><%= booking.end_date %></td>
+        <td><%= booking.num_guests %></td>
+        <td><%= booking.user.first_name %></td>
+            <% case current_user.role %>
+            <% when 'user' %>
+              <td><%= link_to 'Show', booking %></td>
+            <% when 'vip' %>
+              <td><%= link_to 'Show', booking %></td>
+              <td><%= link_to 'Edit', edit_listing_booking_path(booking.listing, booking) %></td>
+            <% when 'admin' %>
+              <td><%= link_to 'Show', booking %></td>
+              <td><%= link_to 'Edit', edit_listing_booking_path(booking.listing, booking) %></td>
+              <td><%= link_to 'Destroy', booking, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <% when booking.user == current_user %>
+              <td><%= link_to 'Show', booking %></td>
+              <td><%= link_to 'Edit', edit_listing_booking_path(booking.listing, booking) %></td>
+              <td><%= link_to 'Destroy', booking, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+            <% end %>
+        <% end %>
+      </tr>
+  </tbody>
+</table>
+
+
 <p id="notice"><%= notice %></p>
 <h1>Listing Information</h1>
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
@@ -102,7 +145,6 @@
   <%= @listing.description %>
 </p>
 
-
 <h1>Bookings Made</h1>
 
 <table>
@@ -119,30 +161,131 @@
 
   <tbody>
     <% @listing.bookings.each do |booking| %>
-      <tr>
-        <td><%= booking.listing.place_type %></td>
-        <td><%= booking.start_date %></td>
-        <td><%= booking.end_date %></td>
-        <td><%= booking.num_guests %></td>
-        <td><%= booking.user.first_name %></td>
-            <% case current_user.role %>
-            <% when 'user' %>
-              <td><%= link_to 'Show', booking %></td>
-            <% when 'vip' %>
-              <td><%= link_to 'Show', booking %></td>
-              <td><%= link_to 'Edit', edit_listing_booking_path(booking.listing, booking) %></td>
-            <% when 'admin' %>
-              <td><%= link_to 'Show', booking %></td>
-              <td><%= link_to 'Edit', edit_listing_booking_path(booking.listing, booking) %></td>
-              <td><%= link_to 'Destroy', booking, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-            <% when booking.user == current_user %>
-              <td><%= link_to 'Show', booking %></td>
-              <td><%= link_to 'Edit', edit_listing_booking_path(booking.listing, booking) %></td>
-              <td><%= link_to 'Destroy', booking, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-            <% end %>
-        <% end %>
-      </tr>
+    <tr>
+      <td><%= booking.listing.place_type %></td>
+      <td><%= booking.start_date %></td>
+      <td><%= booking.end_date %></td>
+      <td><%= booking.num_guests %></td>
+      <td><%= booking.user.first_name %></td>
+      <% case current_user.role %>
+      <% when 'user' %>
+      <td><%= link_to 'Show', booking %></td>
+      <% when 'vip' %>
+      <td><%= link_to 'Show', booking %></td>
+      <td><%= link_to 'Edit', edit_listing_booking_path(booking.listing, booking) %></td>
+      <% when 'admin' %>
+      <td><%= link_to 'Show', booking %></td>
+      <td><%= link_to 'Edit', edit_listing_booking_path(booking.listing, booking) %></td>
+      <td><%= link_to 'Destroy', booking, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <% when booking.user == current_user %>
+      <td><%= link_to 'Show', booking %></td>
+      <td><%= link_to 'Edit', edit_listing_booking_path(booking.listing, booking) %></td>
+      <td><%= link_to 'Destroy', booking, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <% end %>
+      <% end %>
+    </tr>
   </tbody>
 </table>
 
-<br>
+<p id="notice"><%= notice %></p>
+<h1>Listing Information</h1>
+<div id="myCarousel" class="carousel slide" data-ride="carousel">
+  <!-- Indicators -->
+  <ol class="carousel-indicators">
+    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+    <li data-target="#myCarousel" data-slide-to="1"></li>
+    <li data-target="#myCarousel" data-slide-to="2"></li>
+  </ol>
+  <div class="carousel-inner">
+    <% @listing.images.each.with_index do |x,y| %>
+    <!-- Wrapper for slides -->
+    <% if y == 0 %>
+    <div class="item active">
+      <%= image_tag x.url %>
+    </div>
+  <% else %>
+    <div class="item">
+      <%= image_tag x.url %>
+    </div>
+    <% end %>
+    <% end %>
+  </div>
+  <!-- Left and right controls -->
+  <a class="left carousel-control" href="#myCarousel" data-slide="prev">
+    <span class="glyphicon glyphicon-chevron-left"></span>
+    <span class="sr-only">Previous</span>
+  </a>
+  <a class="right carousel-control" href="#myCarousel" data-slide="next">
+    <span class="glyphicon glyphicon-chevron-right"></span>
+    <span class="sr-only">Next</span>
+  </a>
+</div>
+
+<br/>
+<br/>
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @listing.user.first_name %>
+</p>
+
+<p>
+  <strong>Place type:</strong>
+  <%= @listing.place_type %>
+</p>
+
+<p>
+  <strong>Property type:</strong>
+  <%= @listing.property_type %>
+</p>
+
+<p>
+  <strong>Room number:</strong>
+  <%= @listing.room_number %>
+</p>
+
+<p>
+  <strong>Bed number:</strong>
+  <%= @listing.bed_number %>
+</p>
+
+<p>
+  <strong>Guest number:</strong>
+  <%= @listing.guest_number %>
+</p>
+
+<p>
+  <strong>Country:</strong>
+  <%= @listing.country %>
+</p>
+
+<p>
+  <strong>State:</strong>
+  <%= @listing.state %>
+</p>
+
+<p>
+  <strong>City:</strong>
+  <%= @listing.city %>
+</p>
+
+<p>
+  <strong>Zipcode:</strong>
+  <%= @listing.zipcode %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @listing.address %>
+</p>
+
+<p>
+  <strong>Price per night:</strong>
+  <%= @listing.price_per_night %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @listing.description %>
+</p>
