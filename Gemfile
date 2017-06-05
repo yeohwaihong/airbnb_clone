@@ -33,8 +33,12 @@ gem 'gmaps-autocomplete-rails'
 gem 'carrierwave', '~> 1.0'
 gem 'mini_magick'
 gem 'fog'
+gem 'braintree'
 
 gem "jquery-slick-rails"
+
+gem 'rest-client'
+gem "letter_opener", :group => :development
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'

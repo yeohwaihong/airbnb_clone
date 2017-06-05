@@ -32,6 +32,22 @@
   </div>
 </div>
 
+<h1>Who's That Pokémon?!</h1>
+<p>
+  Take a break and guess that Pokémon
+</p>
+<%= image_tag @pokemon_url, id: "pokemon" %>
+<br />
+<h1 id="pokemon_name"><%= @pokemon_name.upcase %>!</h1>
+<p>
+  Pokemon Number: <%= @pokemon_no %>
+</p>
+<p>
+  Pokemon Type: <%= @pokemon_type.upcase %>
+</p>
+<button id="show">Reveal!</button>
+
+
 <br/>
 <script>
   function initialize() {
@@ -56,9 +72,7 @@
 <h1>Featured Homes</h1>
 <% @listing.each do |x| %>
 <div class="gallery">
-  <a target="_blank" href="img_fjords.jpg">
     <%= image_tag x.images[0].url%>
-  </a>
   <div class="desc">
     <b>Place Type</b>
     <br />
@@ -69,6 +83,26 @@
     <br />
   <%= x.property_type %></div>
 
+  <div class="desc">
+    <b>Listed by</b>
+    <br />
+  <%= x.user.first_name %>
+  </div>
+  <%= link_to 'Show', listing_path(x), class: "btn btn-primary" %>
+  <br />
+  <br />
 </div>
 <%end%>
+
+
 </div>
+<script>
+$(document).ready(function(){
+    $("#hide").click(function(){
+        $("#pokemon_name").hide();
+    });
+    $("#show").click(function(){
+        $("#pokemon_name").show();
+    });
+});
+</script>

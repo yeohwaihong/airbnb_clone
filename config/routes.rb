@@ -19,6 +19,8 @@ Rails.application.routes.draw do
   get "/auth/:provider/callback" => "sessions#create_from_omniauth"
   get "/listings" => "listings#index"
   get "/bookings" => "bookings#index"
+  get 'braintree/new' => "braintree#new"
+  post 'braintree/checkout'
 
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
