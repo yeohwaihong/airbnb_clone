@@ -1,10 +1,14 @@
 class User < ApplicationRecord
   include Clearance::User
   has_many :listings, :dependent => :destroy
+  has_many :bookings
   has_many :authentications, :dependent => :destroy
   enum role: [:user, :vip, :admin]
+
   after_initialize :set_default_role, :if => :new_record?
+
   mount_uploader :avatar, AvatarUploader
+
 
 
   def self.create_with_auth_and_hash(authentication, auth_hash)

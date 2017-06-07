@@ -8,6 +8,9 @@
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAhRtvWyfO98YDseK-1xDl6mJmo4vrMOzM&libraries=places"
       type="text/javascript"></script>
 
+    <script src="https://js.braintreegateway.com/web/3.17.0/js/client.js"></script>
+    <script src="https://js.braintreegateway.com/web/3.17.0/js/hosted-fields.js"></script>
+
 
 
     <%= javascript_include_tag 'application' %>
@@ -27,10 +30,15 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/">Haus Your Day</a>
+          <a class="navbar-brand" href="/"><span class="glyphicon glyphicon-home "></span> Y D</a>
         </div>
         <div class="collapse navbar-collapse" id="navbar">
           <ul class="nav navbar-nav navbar-right">
+            <% if signed_in? %>
+            <li class="active">
+              <a href="/bookings">Bookings</a>
+            </li>
+            <% end %>
             <li class="active">
               <a href="/listings">Listings</a>
             </li>
@@ -71,7 +79,7 @@
     <div id="padding-top">
       <div id="flash">
         <% flash.each do |key, value| -%>
-        <div id="flash_<%= key %>"><%=h value %></div>
+        <div id="flash_<%= key %>"><%=value %></div>
         <% end %>
       </div>
 
@@ -116,6 +124,8 @@
             <a href="#">Login</a>
             -
             <a href="#">Forgot Password</a>
+            <%= link_to "Sign in with Facebook", "/auth/facebook" %>
+
           </div>
         </div>
       </div>

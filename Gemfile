@@ -24,11 +24,24 @@ gem 'uglifier', '>= 1.3.0'
 # gem 'therubyracer', platforms: :ruby
 gem 'clearance'
 gem 'simple_form'
+gem 'kaminari'
 gem 'momentjs-rails'
 gem 'bootstrap3-datetimepicker-rails'
 gem 'country_select'
 gem 'gmaps-autocomplete-rails'
-gem 'carrierwave'
+
+gem 'carrierwave', '~> 1.0'
+gem 'mini_magick'
+gem 'fog'
+gem 'braintree'
+gem 'sidekiq'
+gem 'searchkick'
+gem 'rails_12factor', group: :production
+
+gem "jquery-slick-rails"
+
+gem 'rest-client'
+gem "letter_opener", :group => :development
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'

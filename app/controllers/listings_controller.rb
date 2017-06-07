@@ -1,15 +1,24 @@
 class ListingsController < ApplicationController
   before_action :set_listing, only: [:show, :edit, :update, :destroy]
 
-  # GET /listings
-  # GET /listings.json
   def index
     @listing = Listing.all
+  end
+
+  def search
+    @listing = Listing.search(params[:term], fields: ["country"], misspellings: {below: 5})
+    if @listings.blank?
+      redirect_to root_path, flash:{danger: "no successful search result"}
+    else
+      render :index
+    end
   end
 
   # GET /listings/1
   # GET /listings/1.json
   def show
+    @listing = Listing.find(params[:id])
+    @booking = @listing.bookings.new
   end
 
   # GET /listings/1/edit
@@ -68,7 +77,7 @@ class ListingsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def listing_params
-      params.require(:listing).permit(:place_type, :property_type, :room_number, :bed_number, :guest_number, :country, :state, :city, :zipcode, :address, :price_per_night, :description)
+      params.require(:listing).permit(:place_type, :property_type, :room_number, :bed_number, :guest_number, :country, :state, :city, :zipcode, :address, :price_per_night, :description, {images:[]})
     end
 
 

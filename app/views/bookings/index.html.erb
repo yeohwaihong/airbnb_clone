@@ -1,0 +1,61 @@
+<div class="jumbotron" id="jumbo2">
+  <br/>
+  <br/>
+  <br/>
+  <div class="header_effect">
+    <h1>Bookings</h1>
+    <p>Find your home.</p>
+  </div>
+</div>
+<div class="header_effect">
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Place</th>
+      <th>Start Date</th>
+      <th>End Date</th>
+      <th>Guest number</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @booking.each do |booking| %>
+    <tr>
+      <td><%= booking.listing.place_type %></td>
+      <td><%= booking.start_date %></td>
+      <td><%= booking.end_date %></td>
+      <td><%= booking.num_guests %></td>
+      <% case current_user.role %>
+      <% when 'user' %>
+      <% if booking.payment_made == false %>
+      <td><%= link_to 'Make Payment', new_booking_braintree_path(booking), class: "btn btn-primary" %></td>
+      <% end %>
+      <td><%= link_to 'Show', listing_booking_path(booking.listing, booking), class: "btn btn-primary" %></td>
+      <% when 'vip' %>
+      <% if booking.payment_made == false %>
+      <td><%= link_to 'Make Payment', new_booking_braintree_path(booking), class: "btn btn-primary" %></td>
+      <% end %>
+      <td><%= link_to 'Show', listing_booking_path(booking.listing, booking), class: "btn btn-primary" %></td>
+      <td><%= link_to 'Edit', edit_listing_booking_path(booking.listing, booking), class: "btn btn-primary" %></td>
+      <% when 'admin' %>
+      <% if booking.payment_made == false %>
+      <td><%= link_to 'Make Payment', new_booking_braintree_path(booking), class: "btn btn-primary" %></td>
+      <% end %>
+      <td><%= link_to 'Show', listing_booking_path(booking.listing, booking), class: "btn btn-primary" %></td>
+      <td><%= link_to 'Edit', edit_listing_booking_path(booking.listing, booking), class: "btn btn-primary" %></td>
+      <td><%= link_to 'Destroy', listing_booking_path(booking.listing, booking), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-primary" %></td>
+      <% when booking.user == current_user %>
+      <% if booking.payment_made == false %>
+      <td><%= link_to 'Make Payment', new_booking_braintree_path(booking), class: "btn btn-primary" %></td>
+      <% end %>
+      <td><%= link_to 'Show', listing_booking_path(booking.listing, booking), class: "btn btn-primary" %></td>
+      <td><%= link_to 'Edit', edit_listing_booking_path(booking.listing, booking), class: "btn btn-primary" %></td>
+      <td><%= link_to 'Destroy', listing_booking_path(booking.listing, booking), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-primary" %></td>
+    </tr>
+
+  </tbody>
+  <% end %>
+  <% end %>
+</table>
+</div>

@@ -15,7 +15,14 @@
 //= require jquery_ujs
 //= require bootstrap-sprockets
 //= require rails-ujs
-//= require turbolinks
 //= require_tree .
 //= require moment
 //= require bootstrap-datetimepicker
+//= require jquery.slick
+
+$(document).ready(function () {
+  $('.header_effect').hide()
+  $('.header_effect').fadeIn(2500, function(){})
+  $('.jumbo_effect').hide()
+  $('.jumbo_effect').fadeIn(1000, function(){})
+});

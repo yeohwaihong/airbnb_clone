@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  listings: one
+  start_date: 2017-05-31
+  end_date: 2017-05-31
+  num_guest_integer: MyString
+
+two:
+  user: two
+  listings: two
+  start_date: 2017-05-31
+  end_date: 2017-05-31
+  num_guest_integer: MyString
