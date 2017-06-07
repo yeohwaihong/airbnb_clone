@@ -32,6 +32,7 @@
   </a>
 </div>
 
+<%= @error if @error %>
 <br />
 <br />
 <%= form_for @listing, :html => {:multipart => true} do |f| %>

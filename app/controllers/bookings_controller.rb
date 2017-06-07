@@ -24,15 +24,16 @@ class BookingsController < ApplicationController
     @listing = Listing.find(params[:listing_id])
     @booking = @listing.bookings.new(booking_params)
     @booking.user_id = current_user.id
-    byebug
-    respond_to do |format|
-      if @booking.save
-        format.html { redirect_to @listing, notice: 'Booking was successfully created.' }
-        format.json { render :show, status: :created, location: @booking }
-      else
-        format.html { render 'bookings/form' }
-        format.json { render json: @booking.errors, status: "bobs" }
-      end
+    # 1) added the validation methods here
+    if @booking.save
+      @host = User.find(@listing.user_id)
+          # ReservationMailer.notification_email(current_user.email, @host, @booking.listing.id, @booking.id).deliver_later
+          ReservationJob.perform_later(current_user.email, @host, @booking.listing.id, @booking.id)
+          redirect_to listing_booking_path(@listing, @booking) , notice: "Your booking has been created, please make payment to confirm the booking."
+    else
+      #2) make flash messages
+      redirect_to listing_path(@listing), flash: {danger: "check your max num guests or overlapped dates"}
+
     end
   end
 
@@ -54,12 +55,12 @@ class BookingsController < ApplicationController
     @booking = Booking.find(params[:id])
     @booking.destroy
     respond_to do |format|
-      format.html { redirect_to listings_url, notice: 'Booking was successfully destroyed.' }
+      format.html { redirect_to bookings_path, notice: 'Booking was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   def booking_params
-    params.require(:booking).permit(:num_guests, :start_date, :end_date)
+    params.require(:booking).permit(:num_guests, :start_date, :end_date, :listing_id, :user_id)
   end
 end

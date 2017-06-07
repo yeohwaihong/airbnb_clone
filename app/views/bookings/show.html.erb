@@ -22,18 +22,14 @@
         <td><%= booking.user.first_name %></td>
             <% case current_user.role %>
             <% when 'user' %>
-              <td><%= link_to 'Show', booking %></td>
             <% when 'vip' %>
-              <td><%= link_to 'Show', booking %></td>
               <td><%= link_to 'Edit', edit_listing_booking_path(booking.listing, booking) %></td>
             <% when 'admin' %>
-              <td><%= link_to 'Show', booking %></td>
               <td><%= link_to 'Edit', edit_listing_booking_path(booking.listing, booking) %></td>
-              <td><%= link_to 'Destroy', booking, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              <td><%= link_to 'Destroy', listing_booking_path(booking.listing, booking), method: :delete, data: { confirm: 'Are you sure?' } %></td>
             <% when booking.user == current_user %>
-              <td><%= link_to 'Show', booking %></td>
               <td><%= link_to 'Edit', edit_listing_booking_path(booking.listing, booking) %></td>
-              <td><%= link_to 'Destroy', booking, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              <td><%= link_to 'Destroy', listing_booking_path(booking.listing, booking), method: :delete, data: { confirm: 'Are you sure?' } %></td>
             <% end %>
         <% end %>
       </tr>
@@ -41,7 +37,6 @@
 </table>
 
 
-<p id="notice"><%= notice %></p>
 <h1>Listing Information</h1>
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
   <!-- Indicators -->

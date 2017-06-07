@@ -34,6 +34,9 @@ gem 'carrierwave', '~> 1.0'
 gem 'mini_magick'
 gem 'fog'
 gem 'braintree'
+gem 'sidekiq'
+gem 'searchkick'
+gem 'rails_12factor', group: :production
 
 gem "jquery-slick-rails"
 

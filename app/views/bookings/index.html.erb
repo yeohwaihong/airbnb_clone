@@ -8,7 +8,6 @@
   </div>
 </div>
 <div class="header_effect">
-<p id="notice"><%= notice %></p>
 <table class="table table-hover">
   <thead>
     <tr>
@@ -29,21 +28,34 @@
       <td><%= booking.num_guests %></td>
       <% case current_user.role %>
       <% when 'user' %>
+      <% if booking.payment_made == false %>
+      <td><%= link_to 'Make Payment', new_booking_braintree_path(booking), class: "btn btn-primary" %></td>
+      <% end %>
       <td><%= link_to 'Show', listing_booking_path(booking.listing, booking), class: "btn btn-primary" %></td>
       <% when 'vip' %>
+      <% if booking.payment_made == false %>
+      <td><%= link_to 'Make Payment', new_booking_braintree_path(booking), class: "btn btn-primary" %></td>
+      <% end %>
       <td><%= link_to 'Show', listing_booking_path(booking.listing, booking), class: "btn btn-primary" %></td>
       <td><%= link_to 'Edit', edit_listing_booking_path(booking.listing, booking), class: "btn btn-primary" %></td>
       <% when 'admin' %>
+      <% if booking.payment_made == false %>
+      <td><%= link_to 'Make Payment', new_booking_braintree_path(booking), class: "btn btn-primary" %></td>
+      <% end %>
       <td><%= link_to 'Show', listing_booking_path(booking.listing, booking), class: "btn btn-primary" %></td>
       <td><%= link_to 'Edit', edit_listing_booking_path(booking.listing, booking), class: "btn btn-primary" %></td>
       <td><%= link_to 'Destroy', listing_booking_path(booking.listing, booking), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-primary" %></td>
       <% when booking.user == current_user %>
+      <% if booking.payment_made == false %>
+      <td><%= link_to 'Make Payment', new_booking_braintree_path(booking), class: "btn btn-primary" %></td>
+      <% end %>
       <td><%= link_to 'Show', listing_booking_path(booking.listing, booking), class: "btn btn-primary" %></td>
       <td><%= link_to 'Edit', edit_listing_booking_path(booking.listing, booking), class: "btn btn-primary" %></td>
       <td><%= link_to 'Destroy', listing_booking_path(booking.listing, booking), method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-primary" %></td>
-      <% end %>
-      <% end %>
     </tr>
+
   </tbody>
+  <% end %>
+  <% end %>
 </table>
 </div>

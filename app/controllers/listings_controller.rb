@@ -5,6 +5,15 @@ class ListingsController < ApplicationController
     @listing = Listing.all
   end
 
+  def search
+    @listing = Listing.search(params[:term], fields: ["country"], misspellings: {below: 5})
+    if @listings.blank?
+      redirect_to root_path, flash:{danger: "no successful search result"}
+    else
+      render :index
+    end
+  end
+
   # GET /listings/1
   # GET /listings/1.json
   def show
